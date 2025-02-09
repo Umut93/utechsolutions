@@ -110,6 +110,13 @@ body {
 }
 
 /* Services Section */
+#services h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--black);
+    margin-bottom: 2rem;
+}
+
 .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -136,6 +143,13 @@ body {
 }
 
 /* Process Section */
+#process h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--black);
+    margin-bottom: 2rem;
+}
+
 .process-steps {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -156,7 +170,6 @@ body {
     margin: 0 auto 1rem;
 }
 
-/* Contact Section */
 /* Contact Section */
 .contact {
     padding: 5rem 0;
