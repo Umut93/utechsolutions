@@ -3,18 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="UTech Solutions - Skræddersyede softwareløsninger til effektivisering af virksomhedsprocesser">
     <title>UTech Solutions</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="icon" type="image/png" href="layers.png">
 </head>
 <body>
-    <!-- Navigation -->
     <nav class="nav">
         <div class="container">
             <div class="nav-content">
                 <span class="logo">UTech<span> Solutions</span></span>
+                <button class="menu-toggle" aria-label="Toggle menu">
+                    <i class="fas fa-bars"></i>
+                </button>
                 <ul class="nav-links">
                     <li><a href="#services">Løsninger</a></li>
                     <li><a href="#process">Process</a></li>
@@ -24,7 +27,6 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-overlay">
             <div class="container">
@@ -36,81 +38,68 @@
         </div>
     </section>
 
-    <!-- Services Section -->
     <section id="services" class="section">
         <div class="container">
             <h2>Løsninger</h2>
             <div class="services-grid">
-                <div class="service-card">
-                    <i class="fas fa-project-diagram fa-3x"></i>
+                <article class="service-card">
+                    <i class="fas fa-project-diagram fa-3x" aria-hidden="true"></i>
                     <h3>Systemarkitektur</h3>
                     <p>Skræddersyede systemdesigns til komplekse forretningsbehov</p>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-robot fa-3x"></i>
+                </article>
+                <article class="service-card">
+                    <i class="fas fa-robot fa-3x" aria-hidden="true"></i>
                     <h3>Processautomatisering</h3>
                     <p>Effektivisering af arbejdsgange ved at automatisere og strømline processer</p>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-database fa-3x"></i>
+                </article>
+                <article class="service-card">
+                    <i class="fas fa-database fa-3x" aria-hidden="true"></i>
                     <h3>Data Management</h3>
                     <p>Effektiv håndtering og analyse af virksomhedens data</p>
-                </div>
+                </article>
             </div>
         </div>
     </section>
 
-    <!-- Process Section -->
     <section id="process" class="section">
         <div class="container">
             <h2>Proces</h2>
             <div class="process-steps">
-                <div class="step">
+                <article class="step">
                     <div class="step-number">1</div>
                     <h3>Analyse</h3>
                     <p>Indsigt i jeres specifikke udfordringer og behov</p>
-                </div>
-                <div class="step">
+                </article>
+                <article class="step">
                     <div class="step-number">2</div>
                     <h3>Design</h3>
                     <p>Udvikling af robuste og skalerbare løsninger</p>
-                </div>
-                <div class="step">
+                </article>
+                <article class="step">
                     <div class="step-number">3</div>
                     <h3>Implementering</h3>
                     <p>Gennemførelse og opsætning af løsningen i jeres systemer</p>
-                </div>
+                </article>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-     <section id="contact" class="contact">
+    <section id="contact" class="contact">
         <div class="container">
             <h2>Kontakt</h2>
             <div class="contact-content">
                 <div class="contact-info">
                     <div class="contact-item">
                         <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
+                            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                         </div>
                         <div class="contact-text">
                             <p>Aalborg</p>
                         </div>
                     </div>
-                    <!--
                     <div class="contact-item">
                         <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div class="contact-text">
-                            <p>+45 12 34 56 78</p>
-                        </div>
-                    </div>
-                    -->
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
+                            <i class="fas fa-envelope" aria-hidden="true"></i>
                         </div>
                         <div class="contact-text">
                            <p><a href="mailto:kontakt@utechsolutions.dk">kontakt@utechsolutions.dk</a></p>
@@ -129,6 +118,14 @@
     
     <script>
         document.getElementById("year").textContent = new Date().getFullYear();
+        
+        // Mobile menu toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
     </script>
 </body>
 </html>
