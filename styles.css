@@ -62,6 +62,16 @@ body {
     font-weight: 400;
 }
 
+/* Ensure the logo link inherits styles */
+.logo a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.logo a:hover {
+    color: inherit;
+}
+
 .nav-links {
     display: flex;
     gap: 2rem;
