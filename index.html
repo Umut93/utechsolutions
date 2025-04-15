@@ -15,7 +15,7 @@
         <div class="container">
             <div class="nav-content">
                 <span class="logo">
-                    <a href="#"><img src="logo.png" alt="UTech Solutions Logo" class="logo-image"></a>
+                    <a href="#" class="logo-link"><img src="logo.png" alt="UTech Solutions Logo" class="logo-image"></a>
                 </span>
                 <button class="menu-toggle" aria-label="Toggle menu">
                     <i class="fas fa-bars"></i>
@@ -114,7 +114,7 @@
 
     <footer class="footer">
         <div class="container">
-            <p><span id="year"></span> UTech Solutions • CVR 45387283</p>
+            <p>© <span id="year"></span> UTech Solutions • CVR 45387283</p>
         </div>
     </footer>
     
@@ -135,6 +135,8 @@
                 e.preventDefault();
                 
                 const targetId = this.getAttribute('href');
+                if (targetId === '#') return; // Skip for logo link
+                
                 const targetElement = document.querySelector(targetId);
                 const headerHeight = document.querySelector('.nav').offsetHeight;
                 const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
@@ -147,6 +149,18 @@
                 // Close mobile menu if open
                 navLinks.classList.remove('active');
             });
+        });
+
+        // Scroll to top when logo is clicked
+        document.querySelector('.logo-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+            
+            // Close mobile menu if open
+            navLinks.classList.remove('active');
         });
     </script>
 </body>
