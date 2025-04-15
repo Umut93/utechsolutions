@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html lang="da">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="UTech Solutions - Skræddersyede softwareløsninger til effektivisering af virksomhedsprocesser">
+    <meta name="description"
+        content="UTech Solutions - Skræddersyede softwareløsninger til effektivisering af virksomhedsprocesser">
     <title>UTech Solutions</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap"
+        as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style"
+        onload="this.onload=null;this.rel='stylesheet'">
     <link rel="icon" type="image/png" href="layers.png">
 </head>
+
 <body>
     <nav class="nav">
         <div class="container">
             <div class="nav-content">
                 <span class="logo">
-                    <a href="#">UTech<span> Solutions</span></a>
+                    <a href="#"><img src="logo.png" alt="UTech Solutions Logo" class="logo-image"></a>
                 </span>
                 <button class="menu-toggle" aria-label="Toggle menu">
                     <i class="fas fa-bars"></i>
@@ -34,8 +39,9 @@
             <div class="container">
                 <div class="hero-content">
                     <h1>Din partner<br>i <span class="highlight">tekniske løsninger</span></h1>
-                    <p class="subhead">Udvikler skræddersyede softwareløsninger, der hjælper din virksomhed med at gøre processer nemmere og mere effektive.</p>
-                </div>                
+                    <p class="subhead">Udvikler skræddersyede softwareløsninger, der hjælper din virksomhed med at gøre
+                        processer nemmere og mere effektive.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -104,7 +110,7 @@
                             <i class="fas fa-envelope" aria-hidden="true"></i>
                         </div>
                         <div class="contact-text">
-                           <p><a href="mailto:kontakt@utechsolutions.dk">kontakt@utechsolutions.dk</a></p>
+                            <p><a href="mailto:kontakt@utechsolutions.dk">kontakt@utechsolutions.dk</a></p>
                         </div>
                     </div>
                 </div>
@@ -117,17 +123,18 @@
             <p>© <span id="year"></span> UTech Solutions • CVR 45387283</p>
         </div>
     </footer>
-    
+
     <script>
         document.getElementById("year").textContent = new Date().getFullYear();
-        
+
         // Mobile menu toggle
         const menuToggle = document.querySelector('.menu-toggle');
         const navLinks = document.querySelector('.nav-links');
-        
+
         menuToggle.addEventListener('click', () => {
             navLinks.classList.toggle('active');
         });
     </script>
 </body>
+
 </html>
