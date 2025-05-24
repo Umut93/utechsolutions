@@ -201,6 +201,7 @@ body {
     position: relative;
     z-index: 1;
     transition: var(--transition);
+    text-align: center;
 }
 
 .service-card:hover {
@@ -214,6 +215,10 @@ body {
     margin-bottom: 1.8rem;
     font-size: 3.5rem;
     filter: drop-shadow(0 2px 6px rgba(9,132,227,0.10));
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }
 
 .service-card h3 {
