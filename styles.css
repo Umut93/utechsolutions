@@ -44,6 +44,18 @@ body {
     position: sticky;
     top: 0;
     z-index: 1000;
+    box-shadow: 0 2px 12px rgba(9, 132, 227, 0.07);
+    border-bottom: 1px solid #e3eaf1;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(2px);
+    will-change: transform;
+}
+
+.nav.transparent {
+    background: transparent;
+    box-shadow: none;
+    border-bottom: none;
+    transition: background 0.3s, box-shadow 0.3s;
 }
 
 .nav-content {
@@ -63,6 +75,11 @@ body {
     width: auto;
     max-width: 220px;
     object-fit: contain;
+    transition: transform 0.18s;
+}
+
+.logo-image:hover {
+    transform: scale(1.04) rotate(-2deg);
 }
 
 /* Ensure the logo link inherits styles */
@@ -85,10 +102,23 @@ body {
     font-weight: 500;
     transition: var(--transition);
     font-size: 1.1rem;
+    position: relative;
 }
 
 .nav-links a:hover {
     color: var(--primary);
+}
+
+.nav-links a::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: var(--primary);
+    transition: width 0.3s;
+    position: absolute;
+    left: 0;
+    bottom: -4px;
 }
 
 .menu-toggle {
@@ -109,24 +139,30 @@ body {
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-                url('marvin-meyer-SYTO3xs06fU-unsplash.jpg') center/cover;
+    background: linear-gradient(120deg, rgba(9,132,227,0.92) 0%, rgba(45,52,54,0.82) 100%), 
+                url('5QgIuuBxKwM-unsplash.jpg') center/cover;
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     color: var(--white);
+    box-shadow: 0 8px 32px rgba(9,132,227,0.07);
+    background-attachment: scroll; /* For best performance on mobile, avoid 'fixed' */
 }
 
 .hero h1 {
     font-size: clamp(2.2rem, 6vw, 3rem);
     margin-bottom: 1.5rem;
     line-height: 1.2;
+    letter-spacing: -1px;
 }
 
 .highlight {
-    color: var(--primary);
+    color: #ffe066;
+    background: rgba(255,255,255,0.10);
+    padding: 0 0.3em;
+    border-radius: 0.2em;
 }
 
 .subhead {
@@ -160,19 +196,24 @@ body {
     background: var(--white);
     padding: 2.5rem 2rem;
     border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    text-align: center;
+    box-shadow: 0 4px 24px rgba(9,132,227,0.08);
+    border: 1px solid #e3eaf1;
+    position: relative;
+    z-index: 1;
     transition: var(--transition);
 }
 
 .service-card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 12px 32px rgba(9,132,227,0.13);
+    background: #f0f7ff;
 }
 
 .service-card i {
     color: var(--primary);
     margin-bottom: 1.8rem;
     font-size: 3.5rem;
+    filter: drop-shadow(0 2px 6px rgba(9,132,227,0.10));
 }
 
 .service-card h3 {
@@ -205,6 +246,16 @@ body {
 .step {
     text-align: center;
     padding: 1.5rem;
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0 4px 24px rgba(9,132,227,0.07);
+    border: 1px solid #e3eaf1;
+    transition: box-shadow 0.18s, transform 0.18s;
+}
+
+.step:hover {
+    box-shadow: 0 12px 32px rgba(9,132,227,0.13);
+    transform: translateY(-6px) scale(1.02);
 }
 
 .step-number {
@@ -219,6 +270,8 @@ body {
     font-size: 1.8rem;
     margin: 0 auto 1.5rem;
     font-weight: 700;
+    box-shadow: 0 2px 8px rgba(9,132,227,0.10);
+    border: 2px solid #fff;
 }
 
 .step h3 {
@@ -251,7 +304,8 @@ body {
     background: var(--white);
     padding: 2.5rem;
     border-radius: var(--radius);
-    box-shadow: var(--shadow);
+    box-shadow: 0 4px 24px rgba(9,132,227,0.08);
+    border: 1px solid #e3eaf1;
     max-width: 650px;
     width: 100%;
 }
@@ -272,6 +326,8 @@ body {
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(9,132,227,0.10);
+    background: linear-gradient(135deg, var(--primary) 60%, #74b9ff 100%);
 }
 
 .contact-icon i {
@@ -297,11 +353,13 @@ body {
 
 /* Footer */
 .footer {
-    background: var(--black);
+    background: linear-gradient(90deg, #0984e3 0%, #2d3436 100%);
     color: var(--white);
     text-align: center;
     padding: 2.5rem 0;
     margin-top: auto;
+    box-shadow: 0 -2px 12px rgba(9,132,227,0.07);
+    letter-spacing: 0.02em;
 }
 
 .footer p {
@@ -325,10 +383,16 @@ body {
         padding: 1.5rem;
         box-shadow: var(--shadow);
         gap: 1.5rem;
+        transition: max-height 0.4s cubic-bezier(.4,0,.2,1), box-shadow 0.3s;
+        max-height: 0;
+        overflow: hidden;
+        box-shadow: none;
     }
     
     .nav-links.active {
         display: flex;
+        max-height: 400px;
+        box-shadow: 0 8px 32px rgba(9,132,227,0.10);
     }
     
     .nav-links a {
@@ -413,4 +477,160 @@ body {
         padding-top: 70px;
         margin-top: -50px;
     }
+}
+
+@media (max-width: 800px) {
+    .service-card {
+        text-align: center;
+    }
+}
+
+/* --- Enhanced Styles Below --- */
+
+/* Smoother transitions for all interactive elements */
+a, button, .service-card, .step, .nav-links a, .menu-toggle {
+    transition: var(--transition);
+}
+
+/* Navbar shadow and sticky effect */
+.nav {
+    box-shadow: 0 2px 12px rgba(9, 132, 227, 0.07);
+    border-bottom: 1px solid #e3eaf1;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(2px);
+}
+
+/* Logo subtle hover effect */
+.logo-image {
+    transition: transform 0.18s;
+}
+.logo-image:hover {
+    transform: scale(1.04) rotate(-2deg);
+}
+
+/* Nav link highlight on hover */
+.nav-links a {
+    position: relative;
+}
+.nav-links a::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: var(--primary);
+    transition: width 0.3s;
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+}
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Mobile menu: smooth slide-down and shadow */
+@media (max-width: 768px) {
+    .nav-links {
+        transition: max-height 0.4s cubic-bezier(.4,0,.2,1), box-shadow 0.3s;
+        max-height: 0;
+        overflow: hidden;
+        box-shadow: none;
+    }
+    .nav-links.active {
+        max-height: 400px;
+        box-shadow: 0 8px 32px rgba(9,132,227,0.10);
+    }
+}
+
+/* Hero: softer overlay and gradient */
+.hero {
+    background: linear-gradient(120deg, rgba(9,132,227,0.92) 0%, rgba(45,52,54,0.82) 100%), 
+                url('5QgIuuBxKwM-unsplash.jpg') center/cover;
+    box-shadow: 0 8px 32px rgba(9,132,227,0.07);
+}
+.hero h1 {
+    letter-spacing: -1px;
+}
+.highlight {
+    color: #ffe066;
+    background: rgba(255,255,255,0.10);
+    padding: 0 0.3em;
+    border-radius: 0.2em;
+}
+
+/* Service cards: shadow, scale, and color pop */
+.service-card {
+    box-shadow: 0 4px 24px rgba(9,132,227,0.08);
+    border: 1px solid #e3eaf1;
+    border-radius: 16px;
+    background: #fff;
+    position: relative;
+    z-index: 1;
+}
+.service-card:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 12px 32px rgba(9,132,227,0.13);
+    background: #f0f7ff;
+}
+.service-card i {
+    filter: drop-shadow(0 2px 6px rgba(9,132,227,0.10));
+}
+
+/* Process steps: subtle shadow and highlight on hover */
+.step {
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0 4px 24px rgba(9,132,227,0.07);
+    border: 1px solid #e3eaf1;
+    transition: box-shadow 0.18s, transform 0.18s;
+}
+.step:hover {
+    box-shadow: 0 12px 32px rgba(9,132,227,0.13);
+    transform: translateY(-6px) scale(1.02);
+}
+.step-number {
+    box-shadow: 0 2px 8px rgba(9,132,227,0.10);
+    border: 2px solid #fff;
+}
+
+/* Contact info: card effect and icon pop */
+.contact-info {
+    box-shadow: 0 4px 24px rgba(9,132,227,0.08);
+    border: 1px solid #e3eaf1;
+    border-radius: 16px;
+}
+.contact-icon {
+    box-shadow: 0 2px 8px rgba(9,132,227,0.10);
+    background: linear-gradient(135deg, var(--primary) 60%, #74b9ff 100%);
+}
+
+/* Footer: gradient and subtle shadow */
+.footer {
+    background: linear-gradient(90deg, #0984e3 0%, #2d3436 100%);
+    box-shadow: 0 -2px 12px rgba(9,132,227,0.07);
+    letter-spacing: 0.02em;
+}
+
+/* Button and input focus improvements */
+button, .contact-text a, input, textarea {
+    outline: none;
+}
+button:focus, .contact-text a:focus, input:focus, textarea:focus {
+    box-shadow: 0 0 0 2px #0984e3aa;
+}
+
+/* Section separation for clarity */
+#services, #process, .contact {
+    border-radius: 0 0 32px 32px;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 16px rgba(9,132,227,0.04);
+}
+
+/* Subtle fade-in animation for sections */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px);}
+    to { opacity: 1; transform: translateY(0);}
+}
+.section-header, .service-card, .step, .contact-info {
+    animation: fadeInUp 0.8s cubic-bezier(.4,0,.2,1) both;
+    will-change: transform, opacity;
 }
