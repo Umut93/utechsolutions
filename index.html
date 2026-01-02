@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" referrerpolicy="no-referrer">
     <link rel="icon" type="image/png" href="logo-icon.png">
 </head>
@@ -33,11 +33,12 @@
             </div>
         </div>
     </nav>
+    <div class="scroll-progress" aria-hidden="true"></div>
 
     <section class="hero">
         <div class="hero-overlay">
             <div class="container">
-                <div class="hero-content">
+                <div class="hero-content reveal">
                     <h1>Din partner<br>i <span class="highlight">tekniske løsninger</span></h1>
                     <p class="subhead">Udvikler skræddersyede softwareløsninger, der hjælper din virksomhed med at gøre processer nemmere og mere effektive.</p>
                 </div>                
@@ -47,19 +48,19 @@
 
     <section id="services" class="section">
         <div class="container">
-            <h2 class="section-header">Løsninger</h2>
+            <h2 class="section-header reveal">Løsninger</h2>
             <div class="services-grid">
-                <article class="service-card">
+                <article class="service-card reveal">
                     <i class="fas fa-project-diagram fa-3x" aria-hidden="true"></i>
                     <h3>Systemarkitektur</h3>
                     <p>Skræddersyede systemdesigns til komplekse forretningsbehov</p>
                 </article>
-                <article class="service-card">
+                <article class="service-card reveal">
                     <i class="fas fa-robot fa-3x" aria-hidden="true"></i>
                     <h3>Processautomatisering</h3>
                     <p>Effektivisering af arbejdsgange ved at automatisere og strømline processer</p>
                 </article>
-                <article class="service-card">
+                <article class="service-card reveal">
                     <i class="fas fa-database fa-3x" aria-hidden="true"></i>
                     <h3>Data Management</h3>
                     <p>Effektiv håndtering og analyse af virksomhedens data</p>
@@ -70,19 +71,19 @@
 
     <section id="process" class="section">
         <div class="container">
-            <h2 class="section-header">Proces</h2>
+            <h2 class="section-header reveal">Proces</h2>
             <div class="process-steps">
-                <article class="step">
+                <article class="step reveal">
                     <div class="step-number">1</div>
                     <h3>Analyse</h3>
                     <p>Indsigt i jeres specifikke udfordringer og behov</p>
                 </article>
-                <article class="step">
+                <article class="step reveal">
                     <div class="step-number">2</div>
                     <h3>Design</h3>
                     <p>Udvikling af robuste og skalerbare løsninger</p>
                 </article>
-                <article class="step">
+                <article class="step reveal">
                     <div class="step-number">3</div>
                     <h3>Implementering</h3>
                     <p>Gennemførelse og opsætning af løsningen i jeres systemer</p>
@@ -93,10 +94,10 @@
 
     <section id="contact" class="contact">
         <div class="container">
-            <h2 class="section-header">Kontakt</h2>
+            <h2 class="section-header reveal">Kontakt</h2>
             <div class="contact-content">
                 <div class="contact-info">
-                    <div class="contact-item">
+                    <div class="contact-item reveal">
                         <div class="contact-icon">
                             <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                         </div>
@@ -104,7 +105,7 @@
                             <p>Aalborg</p>
                         </div>
                     </div>
-                    <div class="contact-item">
+                    <div class="contact-item reveal">
                         <div class="contact-icon">
                             <i class="fas fa-envelope" aria-hidden="true"></i>
                         </div>
@@ -129,6 +130,7 @@
         // Mobile menu toggle
         const menuToggle = document.querySelector('.menu-toggle');
         const navLinks = document.querySelector('.nav-links');
+        const progressEl = document.querySelector('.scroll-progress');
         
         menuToggle.addEventListener('click', () => {
             navLinks.classList.toggle('active');
@@ -156,20 +158,15 @@
             });
         });
 
-        // Scroll to top when logo is clicked
-        document.querySelector('.logo-link').addEventListener('click', function(e) {
-            e.preventDefault();
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-            
-            // Close mobile menu if open
-            navLinks.classList.remove('active');
-        });
-
         document.addEventListener('DOMContentLoaded', function() {
     const nav = document.querySelector('.nav');
+    function updateProgress() {
+        if (!progressEl) return;
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        progressEl.style.width = progress + '%';
+    }
     function updateNavTransparency() {
         if (window.scrollY < window.innerHeight * 0.6) {
             nav.classList.add('transparent');
@@ -178,8 +175,50 @@
         }
     }
     updateNavTransparency();
+    updateProgress();
     window.addEventListener('scroll', updateNavTransparency);
+    window.addEventListener('scroll', updateProgress);
+    window.addEventListener('resize', updateProgress);
 });
+        // Scroll reveals
+        const revealEls = document.querySelectorAll('.reveal');
+        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!prefersReduced && revealEls.length) {
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12 });
+            revealEls.forEach((el) => revealObserver.observe(el));
+        } else {
+            revealEls.forEach((el) => el.classList.add('visible'));
+        }
+
+        // Subtle hero parallax
+        const hero = document.querySelector('.hero');
+        if (hero && !prefersReduced) {
+            let ticking = false;
+            const updateParallax = () => {
+                const shift = Math.min(window.scrollY * 0.18, 120);
+                const textShift = Math.min(window.scrollY * 0.06, 40);
+                hero.style.setProperty('--hero-shift', `${shift}px`);
+                hero.style.setProperty('--hero-text-shift', `${textShift}px`);
+                ticking = false;
+            };
+            const onScroll = () => {
+                if (!ticking) {
+                    window.requestAnimationFrame(updateParallax);
+                    ticking = true;
+                }
+            };
+            updateParallax();
+            window.addEventListener('scroll', onScroll);
+            window.addEventListener('resize', updateParallax);
+        }
     </script>
 </body>
 </html>
+
