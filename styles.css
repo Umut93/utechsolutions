@@ -342,17 +342,7 @@ h3 {
 }
 
 .section-heading {
-  display: flex;
-  align-items: center;
-  gap: 24px;
   margin-bottom: 42px;
-}
-
-.section-heading::after {
-  content: "";
-  width: 84px;
-  height: 1px;
-  background: var(--line);
 }
 
 .services-section {
@@ -447,10 +437,6 @@ h3 {
 .process-section {
   color: #ffffff;
   background: #0d1a2b;
-}
-
-.process-section .section-heading::after {
-  background: rgba(255, 255, 255, 0.18);
 }
 
 .step {
@@ -728,12 +714,7 @@ h3 {
   }
 
   .section-heading {
-    gap: 18px;
     margin-bottom: 32px;
-  }
-
-  .section-heading::after {
-    width: 54px;
   }
 
   .service-row {
