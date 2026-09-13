@@ -1,0 +1,5 @@
+# Preserve retired local drafts without publishing them.
+/.local-archive/
+
+# Local development dependencies.
+/node_modules/

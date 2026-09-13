@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="UTech Solutions - Skræddersyede softwareløsninger til effektivisering af virksomhedsprocesser">
-  <meta name="theme-color" content="#07111f">
+  <meta name="theme-color" content="#121e28">
   <meta name="author" content="UTech Solutions">
   <title>UTech Solutions</title>
   <link rel="canonical" href="https://utechsolutions.dk/">
@@ -20,129 +20,55 @@
   <meta name="twitter:image" content="https://utechsolutions.dk/hero-system-v2-optimized.jpg">
   <link rel="icon" type="image/png" href="logo-icon.png">
   <link rel="preload" as="image" href="hero-system-v2-optimized.jpg" type="image/jpeg">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="preload" as="font" href="assets/manrope-variable.ttf" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="assets/original-elevated.css?v=00a7f7f6">
 </head>
 <body id="top">
   <a class="skip-link" href="#main">Gå til indhold</a>
-  <div class="scroll-progress" aria-hidden="true"></div>
-
-  <header class="site-header" data-header>
-    <div class="container header-inner">
-      <a href="#top" class="brand" aria-label="UTech Solutions">
-        <img src="logo-icon.png" alt="" class="brand-mark" width="34" height="40">
-        <span>UTech Solutions</span>
-      </a>
-
-      <button class="menu-toggle" type="button" aria-label="Åbn menu" aria-expanded="false" aria-controls="site-nav" data-menu-toggle>
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-
-      <nav class="site-nav" id="site-nav" data-nav>
-        <a href="#services">Løsninger</a>
-        <a href="#process">Process</a>
-        <a href="#contact" class="nav-cta">Kontakt</a>
-      </nav>
-    </div>
-  </header>
+  <header class="site-header"><div class="container header-inner">
+    <a class="brand" href="#top" aria-label="UTech Solutions"><img src="logo-icon.png" alt="" width="28" height="35"><span>UTech<span class="brand-light"> Solutions</span></span></a>
+    <button class="menu-toggle" type="button" aria-label="Åbn menu" aria-expanded="false" aria-controls="site-nav" data-menu-toggle hidden><span></span><span></span></button>
+    <nav class="site-nav" id="site-nav" data-nav aria-label="Primær navigation"><a href="#services">Løsninger</a><a href="#process">Proces</a><a class="nav-cta" href="#contact">Kontakt <span class="arrow-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" focusable="false"><path d="M5 19 19 5M5 5h14v14"/></svg></span></a></nav>
+  </div></header>
 
   <main id="main">
-    <section class="hero">
-      <div class="hero-bg" aria-hidden="true"></div>
-      <div class="hero-scrim" aria-hidden="true"></div>
+    <section class="hero" aria-labelledby="hero-title">
+      <img class="hero-picture" src="hero-system-v2-optimized.jpg" alt="" width="1923" height="818" fetchpriority="high">
+      <div class="hero-shade" aria-hidden="true"></div>
       <div class="container hero-inner">
-        <div class="hero-content reveal">
-          <h1>Din partner<br>i <span>tekniske løsninger</span></h1>
-          <p class="subhead">Udvikler skræddersyede softwareløsninger, der hjælper din virksomhed med at gøre processer nemmere og mere effektive.</p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="mailto:kontakt@utechsolutions.dk">Kontakt</a>
-            <a class="button button-secondary" href="#services">Løsninger</a>
-          </div>
+        <div class="hero-content">
+          <h1 id="hero-title">Din partner<br>i tekniske<br><span>løsninger</span></h1>
+          <p class="subhead">Vi udvikler skræddersyede softwareløsninger, der gør jeres arbejdsgange enklere og mere effektive.</p>
+          <div class="hero-actions"><a class="button button-primary" href="#contact">Lad os tale sammen <span class="arrow-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" focusable="false"><path d="M5 19 19 5M5 5h14v14"/></svg></span></a></div>
         </div>
       </div>
     </section>
 
-    <section id="services" class="section services-section">
-      <div class="container">
-        <div class="section-heading reveal">
-          <h2>Løsninger</h2>
-        </div>
-
-        <div class="services-list">
-          <article class="service-row reveal">
-            <div class="service-number" aria-hidden="true">1</div>
-            <h3>Systemarkitektur</h3>
-            <p>Skræddersyede systemdesigns til komplekse forretningsbehov</p>
-          </article>
-          <article class="service-row reveal">
-            <div class="service-number" aria-hidden="true">2</div>
-            <h3>Processautomatisering</h3>
-            <p>Effektivisering af arbejdsgange ved at automatisere og strømline processer</p>
-          </article>
-          <article class="service-row reveal">
-            <div class="service-number" aria-hidden="true">3</div>
-            <h3>Data Management</h3>
-            <p>Effektiv håndtering og analyse af virksomhedens data</p>
-          </article>
-        </div>
+    <section class="services-section section" id="services" aria-labelledby="services-title"><div class="container">
+      <div class="section-heading reveal"><div><span class="eyebrow section-eyebrow">01 / Det hjælper vi med</span><h2 id="services-title">Løsninger</h2></div><div class="section-lead">Bygget omkring<br><strong>jeres virksomhed.</strong></div></div>
+      <div class="service-grid">
+        <article class="service-card reveal" id="systemarkitektur"><div class="service-top"><span class="service-number" aria-hidden="true">01</span><span class="service-symbol" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><rect x="5" y="7" width="15" height="13" rx="3"/><rect x="28" y="28" width="15" height="13" rx="3"/><path d="M12 26v9h10M35 22V13h-9"/></svg></span></div><h3>Systemarkitektur</h3><p>Skræddersyede systemdesigns til komplekse forretningsbehov</p><div class="service-art" aria-hidden="true"><img src="assets/customer-architecture.svg" alt="" width="300" height="150" loading="lazy"></div><a class="service-link" href="#contact" >Drøft jeres systemer <span class="arrow-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" focusable="false"><path d="M5 19 19 5M5 5h14v14"/></svg></span></a></article>
+        <article class="service-card service-featured reveal" id="processautomatisering"><div class="service-top"><span class="service-number" aria-hidden="true">02</span><span class="service-symbol" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><path d="M9 14h29m-8-8 8 8-8 8M39 34H10m8-8-8 8 8 8"/></svg></span></div><h3>Proces<wbr>automatisering</h3><p>Effektivisering af arbejdsgange ved at automatisere og strømline processer</p><div class="service-art" aria-hidden="true"><img src="assets/customer-automation.svg" alt="" width="300" height="150" loading="lazy"></div><a class="service-link" href="#contact" >Tal om automatisering <span class="arrow-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" focusable="false"><path d="M5 19 19 5M5 5h14v14"/></svg></span></a></article>
+        <article class="service-card reveal" id="data-management"><div class="service-top"><span class="service-number" aria-hidden="true">03</span><span class="service-symbol" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><rect x="6" y="8" width="36" height="32" rx="4"/><path d="M6 19h36M18 19v21m0-10h24"/></svg></span></div><h3>Data Management</h3><p>Effektiv håndtering og analyse af virksomhedens data</p><div class="service-art" aria-hidden="true"><img src="assets/customer-data.svg" alt="" width="300" height="150" loading="lazy"></div><a class="service-link" href="#contact" >Få styr på jeres data <span class="arrow-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" focusable="false"><path d="M5 19 19 5M5 5h14v14"/></svg></span></a></article>
       </div>
-    </section>
+    </div></section>
 
-    <section id="process" class="section process-section">
-      <div class="container">
-        <div class="section-heading reveal">
-          <h2>Proces</h2>
-        </div>
-
-        <div class="process-steps">
-          <article class="step reveal">
-            <div class="step-number">1</div>
-            <h3>Analyse</h3>
-            <p>Indsigt i jeres specifikke udfordringer og behov</p>
-          </article>
-          <article class="step reveal">
-            <div class="step-number">2</div>
-            <h3>Design</h3>
-            <p>Udvikling af robuste og skalerbare løsninger</p>
-          </article>
-          <article class="step reveal">
-            <div class="step-number">3</div>
-            <h3>Implementering</h3>
-            <p>Gennemførelse og opsætning af løsningen i jeres systemer</p>
-          </article>
-        </div>
+    <section class="process-section section" id="process" aria-labelledby="process-title"><div class="container">
+      <div class="section-heading reveal"><div><span class="eyebrow section-eyebrow">02 / Fra behov til løsning</span><h2 id="process-title">Proces</h2></div><div class="section-lead">En fælles retning.<br><strong>Hele vejen.</strong></div></div>
+      <div class="process-steps">
+        <article class="step reveal"><div class="step-marker"><span class="step-dot" aria-hidden="true"></span><span class="step-number">01</span><span class="step-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></span></div><h3>Analyse</h3><p>Indsigt i jeres specifikke udfordringer og behov</p><span class="step-note">Vi starter med at lytte.</span></article>
+        <article class="step reveal"><div class="step-marker"><span class="step-dot" aria-hidden="true"></span><span class="step-number">02</span><span class="step-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></span></div><h3>Design</h3><p>Udvikling af robuste og skalerbare løsninger</p><span class="step-note">Vi finder den rigtige retning.</span></article>
+        <article class="step reveal"><div class="step-marker"><span class="step-dot" aria-hidden="true"></span><span class="step-number">03</span><span class="step-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 4 5L19 7"/></svg></span></div><h3>Implementering</h3><p>Gennemførelse og opsætning af løsningen i jeres systemer</p><span class="step-note">Vi får løsningen ud at leve.</span></article>
       </div>
-    </section>
+    </div></section>
 
-    <section id="contact" class="contact-section">
-      <div class="container contact-inner">
-        <div class="contact-copy reveal">
-          <h2>Kontakt</h2>
-        </div>
-
-        <div class="contact-card reveal">
-          <div class="contact-item">
-            <span>Aalborg</span>
-          </div>
-          <div class="contact-item">
-            <a href="mailto:kontakt@utechsolutions.dk">kontakt@utechsolutions.dk</a>
-          </div>
-        </div>
-      </div>
-    </section>
+    <section class="contact-section" id="contact" aria-labelledby="contact-title"><div class="container contact-inner">
+      <div class="contact-copy reveal"><span class="eyebrow">03 / Næste skridt starter her</span><h2 id="contact-title">Kontakt</h2><p>Har I en udfordring, en idé eller et system, der skal fungere bedre? Lad os tage en snak om mulighederne.</p><span class="contact-location"><i aria-hidden="true"></i> Aalborg</span></div>
+      <div class="contact-card reveal"><span class="contact-label">Direkte kontakt</span><span class="contact-card-title">Fortæl os,<br>hvad der driller.</span><a href="mailto:kontakt@utechsolutions.dk"><span>kontakt@utechsolutions.dk</span><span class="contact-arrow arrow-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" focusable="false"><path d="M5 19 19 5M5 5h14v14"/></svg></span></a><span class="contact-small">I behøver ikke have løsningen klar.</span></div>
+    </div></section>
   </main>
 
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <a href="#top" class="footer-brand">
-        <img src="logo-icon.png" alt="" width="24" height="28">
-        <span>UTech Solutions</span>
-      </a>
-      <p>© <span id="year"></span> UTech Solutions • CVR 45387283</p>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
+  <footer class="site-footer"><div class="container footer-inner"><a class="brand footer-brand" href="#top" aria-label="UTech Solutions, tilbage til toppen"><img src="logo-icon.png" alt="" width="23" height="29"><span>UTech<span class="brand-light"> Solutions</span></span></a><p>© <span data-year>2026</span> UTech Solutions • CVR 45387283</p><button class="motion-toggle" type="button" data-motion-toggle aria-label="Animationer" aria-pressed="true" hidden><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path class="pause-icon" d="M9 6v12M15 6v12"/><path class="play-icon" d="m9 6 9 6-9 6Z"/></svg><span>Animationer</span></button></div></footer>
+  <script type="module" src="assets/original-elevated.js"></script>
 </body>
 </html>
