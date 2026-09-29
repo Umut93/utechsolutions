@@ -33,7 +33,7 @@ if (menu && nav) {
 
 const motion = document.querySelector("[data-motion-toggle]");
 const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
-const reveals = [...document.querySelectorAll(".reveal")];
+const reveals = [...document.querySelectorAll(".reveal, .ill")];
 const storageKey = "utech-motion-paused";
 let userPaused = false;
 let revealObserver;
@@ -49,9 +49,9 @@ const showAllContent = () => {
 const applyMotionPreference = () => {
   const enabled = !userPaused && !reduced.matches;
   root.classList.toggle("motion-paused", !enabled);
-  root.classList.toggle("motion-reduced", reduced.matches);
   if (motion) {
     motion.hidden = false;
+    root.classList.add("js-motion");
     motion.disabled = reduced.matches;
     motion.setAttribute("aria-label", "Animationer");
     motion.setAttribute("aria-pressed", String(enabled));
@@ -59,7 +59,10 @@ const applyMotionPreference = () => {
       ? "Animationer følger din indstilling for reduceret bevægelse"
       : enabled ? "Sæt animationer på pause" : "Afspil animationer";
   }
-  if (!enabled) showAllContent();
+  if (!enabled) {
+    showAllContent();
+    root.classList.add("intro-done");
+  }
 };
 
 motion?.addEventListener("click", () => {
@@ -86,6 +89,30 @@ if (root.classList.contains("motion-paused") || !("IntersectionObserver" in wind
     else revealObserver.observe(item);
   });
   root.classList.add("js-reveal");
+}
+
+// Hero drift: the picture leans away from a fine pointer; CSS eases it, rAF keeps it to one write per frame.
+const hero = document.querySelector(".hero");
+const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
+if (hero) {
+  let frame = 0, pointerX = 0, pointerY = 0;
+  const settle = () => { cancelAnimationFrame(frame); frame = 0; hero.classList.remove("is-drifting"); };
+  const drift = () => {
+    frame = 0;
+    const box = hero.getBoundingClientRect();
+    hero.style.setProperty("--drift-x", ((pointerX - box.left) / box.width - .5).toFixed(3));
+    hero.style.setProperty("--drift-y", ((pointerY - box.top) / box.height - .5).toFixed(3));
+    hero.classList.add("is-drifting");
+  };
+  hero.addEventListener("pointermove", event => {
+    if (event.pointerType !== "mouse" || !finePointer.matches || root.classList.contains("motion-paused")) return settle();
+    pointerX = event.clientX;
+    pointerY = event.clientY;
+    if (!frame) frame = requestAnimationFrame(drift);
+  }, { passive: true });
+  hero.addEventListener("pointerleave", settle);
+  // The hero light rests while the hero is off screen.
+  if ("IntersectionObserver" in window) new IntersectionObserver(([entry]) => hero.classList.toggle("is-away", !entry.isIntersecting)).observe(hero);
 }
 
 document.querySelectorAll("[data-year]").forEach(item => {
