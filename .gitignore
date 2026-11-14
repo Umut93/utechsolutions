@@ -3,3 +3,6 @@
 
 # Local development dependencies.
 /node_modules/
+
+# Local Claude Code settings (preview server config).
+/.claude/
