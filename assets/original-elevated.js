@@ -1,11 +1,13 @@
 const root = document.documentElement;
 
+const header = document.querySelector(".site-header");
 const menu = document.querySelector("[data-menu-toggle]");
 const nav = document.querySelector("[data-nav]");
 
 if (menu && nav) {
   const setMenu = (open, returnFocus = false) => {
     nav.classList.toggle("is-open", open);
+    header?.classList.toggle("is-open", open);
     menu.setAttribute("aria-expanded", String(open));
     menu.setAttribute("aria-label", open ? "Luk menu" : "Åbn menu");
     if (returnFocus) menu.focus();
@@ -30,6 +32,38 @@ if (menu && nav) {
     if (getComputedStyle(menu).display === "none") setMenu(false);
   }, { passive: true });
 }
+
+// Where you are: the nav marks the section that has reached the upper part of the screen (the last one once the page ends).
+if (nav) {
+  const stops = [...nav.querySelectorAll("a[href^='#']")]
+    .map(link => ({ link, section: document.getElementById(link.hash.slice(1)) }))
+    .filter(stop => stop.section);
+  let queued = false;
+  const mark = () => {
+    queued = false;
+    const line = innerHeight * .4;
+    let current = null;
+    stops.forEach(stop => { if (stop.section.getBoundingClientRect().top <= line) current = stop; });
+    if (scrollY > 0 && innerHeight + scrollY >= root.scrollHeight - 2) current = stops[stops.length - 1];
+    stops.forEach(stop => {
+      if (stop === current) stop.link.setAttribute("aria-current", "true");
+      else stop.link.removeAttribute("aria-current");
+    });
+  };
+  const queue = () => {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(mark);
+  };
+  if (stops.length) {
+    window.addEventListener("scroll", queue, { passive: true });
+    window.addEventListener("resize", queue, { passive: true });
+    mark();
+  }
+}
+
+// A travelling pulse is one traced line drawn three times over (glow, tail, bright head). The copies are made here, before motion is switched on, so all three set off together.
+document.querySelectorAll(".flow path").forEach(line => line.after(line.cloneNode(), line.cloneNode()));
 
 const motion = document.querySelector("[data-motion-toggle]");
 const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -111,9 +145,44 @@ if (hero) {
     if (!frame) frame = requestAnimationFrame(drift);
   }, { passive: true });
   hero.addEventListener("pointerleave", settle);
-  // The hero light rests while the hero is off screen.
-  if ("IntersectionObserver" in window) new IntersectionObserver(([entry]) => hero.classList.toggle("is-away", !entry.isIntersecting)).observe(hero);
 }
+
+// The loops (hero light, travelling pulses, the process line) rest while their section is off screen.
+if ("IntersectionObserver" in window) {
+  const resting = new IntersectionObserver(entries => {
+    entries.forEach(entry => entry.target.classList.toggle("is-away", !entry.isIntersecting));
+  });
+  document.querySelectorAll(".hero, .process-section").forEach(section => resting.observe(section));
+}
+
+// Copying the address is offered where the clipboard is available; if the browser refuses, the address is selected instead.
+document.querySelectorAll("[data-copy]").forEach(button => {
+  if (!navigator.clipboard?.writeText) return;
+  const label = button.querySelector("[data-copy-label]");
+  const status = document.querySelector("[data-copy-status]");
+  const idleLabel = label.textContent;
+  let reset = 0;
+  button.hidden = false;
+  button.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(button.dataset.copy);
+    } catch {
+      const address = button.closest(".contact-card")?.querySelector("a[href^='mailto:'] span");
+      if (address) getSelection()?.selectAllChildren(address);
+      return;
+    }
+    clearTimeout(reset);
+    button.style.minWidth = `${button.offsetWidth}px`;
+    button.classList.add("is-copied");
+    label.textContent = "Kopieret";
+    if (status) status.textContent = "Mailadressen er kopieret";
+    reset = setTimeout(() => {
+      button.classList.remove("is-copied");
+      label.textContent = idleLabel;
+      if (status) status.textContent = "";
+    }, 2400);
+  });
+});
 
 document.querySelectorAll("[data-year]").forEach(item => {
   item.textContent = String(new Date().getFullYear());
